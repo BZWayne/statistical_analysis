@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="final_assignment" type="master.py" name="controller" output="screen"/>
+</launch>
