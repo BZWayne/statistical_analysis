@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="namespacemaster" kind="namespace" language="Python">
+    <compoundname>master</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacemaster_1a9b6b5a1862d2d8954f854b9b886b326b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def master.welcome</definition>
+        <argsstring>()</argsstring>
+        <name>welcome</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>This is the instruction list for user
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/master.py" line="23" column="1" bodyfile="src/master.py" bodystart="23" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemaster_1a1835cdc0fc647a2c5b5ccf8b5e6e1778" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def master.main</definition>
+        <argsstring>()</argsstring>
+        <name>main</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>This function used to choose the driving mode by user
+#The user message is passed to the service ``master``
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/master.py" line="36" column="1" bodyfile="src/master.py" bodystart="36" bodyend="66"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>.. module::master
+    :platform Unix
+    :synopsis: Python module for managing the robot to the target
+
+..moduleauthor:: Bauyrzhan Zhakanov
+
+This module is responsible for managing the driving modes choosen by user. WIth this user interface, 
+the user can choose either autonomous, manual driving and manual driving with assistance. 
+This file is calling specific functions in terminal and receive inputs. </verbatim> </para>
+    </detaileddescription>
+    <location file="src/master.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,5 +1,17 @@
 #! /usr/bin/env python
 
+"""
+.. module::option2
+    :platform: Unix
+    :synopsis: Python module for the manual mode
+
+.. moduleauthor:: Bauyrzhan Zhakanov
+
+This mode allows to use the robot in manual mode. The robot can be controlled with keyboards.
+BY receiving the inputs, the robot moves forward/backward, right/left. 
+
+"""
+
 import rospy
 import time
 import os
@@ -12,6 +24,11 @@ publisher_velocity = rospy.Publisher("cmd_vel", Twist, queue_size = 50)
 
 ## welcoming words and instructions
 def welcome():
+
+    """
+    This is the instruction list of keyboards for user
+    """
+
     os.system('clear')
     print("Manual drive is activated")
     print("Press [W] or [w]: to move forward")
@@ -22,6 +39,11 @@ def welcome():
 
 ## buttons for movement (forward, backward, right, left) and exit
 def getch():
+
+    """
+    This method getch() is used for avoiding pressing Enter 
+    """
+
     def _getch():
         fd = sys.stdin.fileno()
         old_settings = termios.tcgetattr(fd)
@@ -35,6 +57,12 @@ def getch():
 
 # Control buttons for robot
 def control_buttons():
+
+    """
+    This method is used for controlling the buttons
+    Control buttons: forward - backward, right - left, exit
+    """
+
     button = getch()
     velocity_x = 0
     angular_vel = 0
@@ -57,6 +85,11 @@ def control_buttons():
 
 # main for option_two
 def option_two():
+
+    """
+    This method is used for moving the robot based on the pressed inputs 
+    """
+
     exit_system = False
     msg_twist = Twist()
     msg_twist.linear.y = 0

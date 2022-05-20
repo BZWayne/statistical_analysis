@@ -1,14 +1,15 @@
 #! /usr/bin/env python
 
 """
-    ..module:: master
+.. module::master
     :platform Unix
     :synopsis: Python module for managing the robot to the target
-    ..moduleauthor:: Bauyrzhan Zhakanov <bauyrzhan.zhakanov@gmail.com>
-    
 
-    Service:
-        /master
+..moduleauthor:: Bauyrzhan Zhakanov
+
+This module is responsible for managing the driving modes choosen by user. WIth this user interface, 
+the user can choose either autonomous, manual driving and manual driving with assistance. 
+This file is calling specific functions in terminal and receive inputs. 
 
 """
 
@@ -20,6 +21,10 @@ from option3 import option_three
 
 # User interface to give the user a set of options
 def welcome():
+    """
+    This is the instruction list for user
+    """
+
     os.system('clear')
     print("Whats Up? This is RT1 Assignment III, and here is an UI for it.")
     print("Press [1] for autonomous drive of the robot")
@@ -32,9 +37,7 @@ def main():
 
     """
     This function used to choose the driving mode by user
-    The user message is passed to the service ``master``
-    
-
+    #The user message is passed to the service ``master``
     """
 
     exit_system = False

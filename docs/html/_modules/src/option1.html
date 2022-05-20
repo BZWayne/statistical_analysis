@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.option1 &mdash; rt2_exercise 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> rt2_exercise
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">rt2_exercise</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>src.option1</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.option1</h1><div class="highlight"><pre>
+<span></span><span class="ch">#! /usr/bin/env python</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module::option1</span>
+<span class="sd">    :platform: Unix</span>
+<span class="sd">    :synopsis: Python module for autonomous mode.</span>
+
+<span class="sd">.. moduleauthor:: Bauyrzhan Zhakanov</span>
+
+<span class="sd">Action client:</span>
+<span class="sd">    /move_base</span>
+
+<span class="sd">This module is called the autonomous driving mode that allows the robot to reach a specified position provided by user.</span>
+<span class="sd">Regarding on the input of the user, those inputs will be sent as a goal to the action server /move_base. </span>
+<span class="sd">During the movement, the robot sends feedback regarding status of the goal either reached or cancelled with publishers </span>
+<span class="sd">like /move_base/goal or /move_base/cancel respectively. The robot can create a map with help of gmapping. User is also able</span>
+<span class="sd">to cancel the goal, and provide a new one. </span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">move_base_msgs.msg</span> <span class="kn">import</span> <span class="n">MoveBaseActionFeedback</span>
+<span class="kn">from</span> <span class="nn">move_base_msgs.msg</span> <span class="kn">import</span> <span class="n">MoveBaseActionGoal</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Twist</span>
+<span class="kn">from</span> <span class="nn">actionlib_msgs.msg</span> <span class="kn">import</span> <span class="n">GoalID</span>
+<span class="kn">from</span> <span class="nn">actionlib_msgs.msg</span> <span class="kn">import</span> <span class="n">GoalStatusArray</span>
+
+<span class="c1"># publishers</span>
+<span class="n">publisher_movebase</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s2">&quot;move_base/goal&quot;</span><span class="p">,</span> <span class="n">MoveBaseActionGoal</span><span class="p">,</span> <span class="n">queue_size</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">publisher_cancel</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s2">&quot;move_base/cancel&quot;</span><span class="p">,</span> <span class="n">GoalID</span><span class="p">,</span> <span class="n">queue_size</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span>
+
+<div class="viewcode-block" id="option_one"><a class="viewcode-back" href="../../index.html#src.option1.option_one">[docs]</a><span class="k">def</span> <span class="nf">option_one</span><span class="p">():</span>
+
+    <span class="sd">&quot;&quot;&quot;This method is for the autonomous mode by communicating with </span>
+<span class="sd">    the /move_base node via action server.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># message topics using /move_base </span>
+    <span class="n">move_base_msg</span> <span class="o">=</span> <span class="n">MoveBaseActionGoal</span><span class="p">()</span>
+    <span class="n">move_base_msg</span><span class="o">.</span><span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s2">&quot;map&quot;</span>
+    <span class="n">move_base_msg</span><span class="o">.</span><span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">orientation</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="c1"># for exitting from the system</span>
+    <span class="n">exit_system</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">exit_system</span><span class="p">:</span>
+
+        <span class="c1">## renew the system</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;clear&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Autonomous drive is chosen&quot;</span><span class="p">)</span>
+        <span class="n">x_goal</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Insert x coordinate: &quot;</span><span class="p">))</span>
+        <span class="n">y_goal</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Insert y coordinate: &quot;</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The coordinates were given: x = </span><span class="si">%2.2f</span><span class="s2"> and y = </span><span class="si">%2.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x_goal</span><span class="p">,</span> <span class="n">y_goal</span><span class="p">))</span>
+
+        <span class="c1">## provide and publish move_base with (x,y) values</span>
+        <span class="n">move_base_msg</span><span class="o">.</span><span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x_goal</span>
+        <span class="n">move_base_msg</span><span class="o">.</span><span class="n">goal</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y_goal</span>
+        <span class="n">publisher_movebase</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">move_base_msg</span><span class="p">)</span> 
+
+        <span class="c1">## provide basic needs and start moving</span>
+        <span class="n">time_start</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Time</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">to_sec</span><span class="p">()</span>
+        <span class="n">dis_goal</span> <span class="o">=</span> <span class="mi">100</span>
+        <span class="n">rob_state</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1">## wait for the status</span>
+        <span class="k">while</span> <span class="n">rob_state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">rob_state</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">wait_for_message</span><span class="p">(</span><span class="s2">&quot;move_base/status&quot;</span><span class="p">,</span> <span class="n">GoalStatusArray</span><span class="p">)</span>
+        
+        <span class="c1">## otherwise continue</span>
+        <span class="nb">id</span> <span class="o">=</span> <span class="n">rob_state</span><span class="o">.</span><span class="n">status_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">goal_id</span><span class="o">.</span><span class="n">id</span> <span class="c1"># Retrieve the id of the goal</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">rob_state</span><span class="o">.</span><span class="n">status_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">status</span> <span class="c1"># Retrieve the current status</span>
+
+        <span class="c1">## if the robot is close to the goal</span>
+        <span class="k">while</span> <span class="n">dis_goal</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">rob_state</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">wait_for_message</span><span class="p">(</span><span class="s2">&quot;move_base/status&quot;</span><span class="p">,</span> <span class="n">GoalStatusArray</span><span class="p">)</span> 
+            <span class="n">rob_state</span> <span class="o">=</span> <span class="n">rob_state</span><span class="o">.</span><span class="n">status_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">status</span>
+
+            <span class="c1">## if goal is not in charge exit from the system</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">state</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">):</span> 
+                <span class="k">break</span>
+
+            <span class="c1">## get the position of robot and time</span>
+            <span class="n">feedback_robot</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">wait_for_message</span><span class="p">(</span><span class="s2">&quot;move_base/feedback&quot;</span><span class="p">,</span> <span class="n">MoveBaseActionFeedback</span><span class="p">)</span>
+            <span class="n">dist_goal_x</span> <span class="o">=</span> <span class="n">feedback_robot</span><span class="o">.</span><span class="n">feedback</span><span class="o">.</span><span class="n">base_position</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span> 
+            <span class="n">dist_goal_y</span> <span class="o">=</span> <span class="n">feedback_robot</span><span class="o">.</span><span class="n">feedback</span><span class="o">.</span><span class="n">base_position</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> 
+            <span class="n">dis_goal</span> <span class="o">=</span> <span class="p">((</span><span class="n">x_goal</span> <span class="o">-</span> <span class="n">dist_goal_x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">y_goal</span> <span class="o">-</span> <span class="n">dist_goal_y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span> 
+            <span class="n">time_finish</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Time</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">to_sec</span><span class="p">()</span>
+
+            <span class="c1">## print position and time</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Now, robot is here at x = </span><span class="si">%2f</span><span class="s2"> and y = </span><span class="si">%2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">dist_goal_x</span><span class="p">,</span> <span class="n">dist_goal_y</span><span class="p">))</span> <span class="c1"># Some feedback for the user</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Time: </span><span class="si">%2f</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">time_finish</span> <span class="o">-</span> <span class="n">time_start</span><span class="p">))</span> <span class="c1"># Some feedback for the user</span>
+        
+        <span class="c1"># if a user want to cancel the goal during movement that is not reachable</span>
+        <span class="k">if</span> <span class="n">state</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span> 
+            <span class="n">inp</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;The robot cannot reach to the goal, do you want to cancel the goal? if yes, press [y]</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">inp</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">break</span>
+        
+        <span class="c1"># if robot achieved the goal</span>
+        <span class="k">if</span> <span class="n">dis_goal</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span> <span class="c1"># Successfully reached</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Robot is at the goal position&quot;</span><span class="p">)</span>
+
+        <span class="c1">## to cancel the robot</span>
+        <span class="n">move_base_msg_cancel</span> <span class="o">=</span> <span class="n">GoalID</span><span class="p">()</span>
+        <span class="n">move_base_msg_cancel</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="n">publisher_cancel</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">move_base_msg_cancel</span><span class="p">)</span>
+
+        <span class="c1"># if a new goal is needed</span>
+        <span class="n">inp</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Do you want to provide new goal? If yes, press [y]: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">inp</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">exit_system</span> <span class="o">=</span> <span class="kc">True</span>
+        
+    <span class="k">return</span> <span class="mi">1</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Bauyrzhan Zhakanov.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

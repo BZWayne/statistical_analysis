@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="option1_8py" kind="file" language="Python">
+    <compoundname>option1.py</compoundname>
+    <innernamespace refid="namespaceoption1">option1</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespaceoption1" refkind="compound"><highlight class="comment">#!<sp/>/usr/bin/env<sp/>python</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="4"><highlight class="stringliteral">..<sp/>module::option1</highlight></codeline>
+<codeline lineno="5"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:platform:<sp/>Unix</highlight></codeline>
+<codeline lineno="6"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>:synopsis:<sp/>Python<sp/>module<sp/>for<sp/>autonomous<sp/>mode.</highlight></codeline>
+<codeline lineno="7"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="8"><highlight class="stringliteral">..<sp/>moduleauthor::<sp/>Bauyrzhan<sp/>Zhakanov</highlight></codeline>
+<codeline lineno="9"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="10"><highlight class="stringliteral">Action<sp/>client:</highlight></codeline>
+<codeline lineno="11"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>/move_base</highlight></codeline>
+<codeline lineno="12"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="13"><highlight class="stringliteral">This<sp/>module<sp/>is<sp/>called<sp/>the<sp/>autonomous<sp/>driving<sp/>mode<sp/>that<sp/>allows<sp/>the<sp/>robot<sp/>to<sp/>reach<sp/>a<sp/>specified<sp/>position<sp/>provided<sp/>by<sp/>user.</highlight></codeline>
+<codeline lineno="14"><highlight class="stringliteral">Regarding<sp/>on<sp/>the<sp/>input<sp/>of<sp/>the<sp/>user,<sp/>those<sp/>inputs<sp/>will<sp/>be<sp/>sent<sp/>as<sp/>a<sp/>goal<sp/>to<sp/>the<sp/>action<sp/>server<sp/>/move_base.<sp/></highlight></codeline>
+<codeline lineno="15"><highlight class="stringliteral">During<sp/>the<sp/>movement,<sp/>the<sp/>robot<sp/>sends<sp/>feedback<sp/>regarding<sp/>status<sp/>of<sp/>the<sp/>goal<sp/>either<sp/>reached<sp/>or<sp/>cancelled<sp/>with<sp/>publishers<sp/></highlight></codeline>
+<codeline lineno="16"><highlight class="stringliteral">like<sp/>/move_base/goal<sp/>or<sp/>/move_base/cancel<sp/>respectively.<sp/>The<sp/>robot<sp/>can<sp/>create<sp/>a<sp/>map<sp/>with<sp/>help<sp/>of<sp/>gmapping.<sp/>User<sp/>is<sp/>also<sp/>able</highlight></codeline>
+<codeline lineno="17"><highlight class="stringliteral">to<sp/>cancel<sp/>the<sp/>goal,<sp/>and<sp/>provide<sp/>a<sp/>new<sp/>one.<sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="19"><highlight class="stringliteral">&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>rospy</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>os</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>move_base_msgs.msg<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>MoveBaseActionFeedback</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>move_base_msgs.msg<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>MoveBaseActionGoal</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>geometry_msgs.msg<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>Twist</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>actionlib_msgs.msg<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>GoalID</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>actionlib_msgs.msg<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>GoalStatusArray</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">#<sp/>publishers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">publisher_movebase<sp/>=<sp/>rospy.Publisher(</highlight><highlight class="stringliteral">&quot;move_base/goal&quot;</highlight><highlight class="normal">,<sp/>MoveBaseActionGoal,<sp/>queue_size<sp/>=<sp/>50)</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">publisher_cancel<sp/>=<sp/>rospy.Publisher(</highlight><highlight class="stringliteral">&quot;move_base/cancel&quot;</highlight><highlight class="normal">,<sp/>GoalID,<sp/>queue_size<sp/>=<sp/>50)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceoption1_1a033d304c8cfa4b221e4a92c81c412e4c" kindref="member">option_one</ref>():</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;This<sp/>method<sp/>is<sp/>for<sp/>the<sp/>autonomous<sp/>mode<sp/>by<sp/>communicating<sp/>with<sp/></highlight></codeline>
+<codeline lineno="36"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>the<sp/>/move_base<sp/>node<sp/>via<sp/>action<sp/>server.</highlight></codeline>
+<codeline lineno="37"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="38"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>message<sp/>topics<sp/>using<sp/>/move_base<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>move_base_msg<sp/>=<sp/>MoveBaseActionGoal()</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>move_base_msg.goal.target_pose.header.frame_id<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;map&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>move_base_msg.goal.target_pose.pose.orientation.w<sp/>=<sp/>1</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>for<sp/>exitting<sp/>from<sp/>the<sp/>system</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>exit_system<sp/>=<sp/></highlight><highlight class="keyword">False</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/>exit_system:</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>os.system(</highlight><highlight class="stringliteral">&apos;clear&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;Autonomous<sp/>drive<sp/>is<sp/>chosen&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x_goal<sp/>=<sp/>float(input(</highlight><highlight class="stringliteral">&quot;Insert<sp/>x<sp/>coordinate:<sp/>&quot;</highlight><highlight class="normal">))</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>y_goal<sp/>=<sp/>float(input(</highlight><highlight class="stringliteral">&quot;Insert<sp/>y<sp/>coordinate:<sp/>&quot;</highlight><highlight class="normal">))</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;The<sp/>coordinates<sp/>were<sp/>given:<sp/>x<sp/>=<sp/>%2.2f<sp/>and<sp/>y<sp/>=<sp/>%2.2f&quot;</highlight><highlight class="normal"><sp/>%<sp/>(x_goal,<sp/>y_goal))</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>move_base_msg.goal.target_pose.pose.position.x<sp/>=<sp/>x_goal</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>move_base_msg.goal.target_pose.pose.position.y<sp/>=<sp/>y_goal</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>publisher_movebase.publish(move_base_msg)<sp/></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>time_start<sp/>=<sp/>rospy.Time.now().to_sec()</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dis_goal<sp/>=<sp/>100</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rob_state<sp/>=<sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>rob_state<sp/></highlight><highlight class="keywordflow">is</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rob_state<sp/>=<sp/>rospy.wait_for_message(</highlight><highlight class="stringliteral">&quot;move_base/status&quot;</highlight><highlight class="normal">,<sp/>GoalStatusArray)</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>id<sp/>=<sp/>rob_state.status_list[-1].goal_id.id<sp/></highlight><highlight class="comment">#<sp/>Retrieve<sp/>the<sp/>id<sp/>of<sp/>the<sp/>goal</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>state<sp/>=<sp/>rob_state.status_list[-1].status<sp/></highlight><highlight class="comment">#<sp/>Retrieve<sp/>the<sp/>current<sp/>status</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>dis_goal<sp/>&gt;<sp/>1:</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rob_state<sp/>=<sp/>rospy.wait_for_message(</highlight><highlight class="stringliteral">&quot;move_base/status&quot;</highlight><highlight class="normal">,<sp/>GoalStatusArray)<sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rob_state<sp/>=<sp/>rob_state.status_list[-1].status</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(state<sp/>!=<sp/>1):<sp/></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>feedback_robot<sp/>=<sp/>rospy.wait_for_message(</highlight><highlight class="stringliteral">&quot;move_base/feedback&quot;</highlight><highlight class="normal">,<sp/>MoveBaseActionFeedback)</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dist_goal_x<sp/>=<sp/>feedback_robot.feedback.base_position.pose.position.x<sp/></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dist_goal_y<sp/>=<sp/>feedback_robot.feedback.base_position.pose.position.y<sp/></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dis_goal<sp/>=<sp/>((x_goal<sp/>-<sp/>dist_goal_x)**2<sp/>+<sp/>(y_goal<sp/>-<sp/>dist_goal_y)**2)**0.5<sp/></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>time_finish<sp/>=<sp/>rospy.Time.now().to_sec()</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;Now,<sp/>robot<sp/>is<sp/>here<sp/>at<sp/>x<sp/>=<sp/>%2f<sp/>and<sp/>y<sp/>=<sp/>%2f&quot;</highlight><highlight class="normal"><sp/>%<sp/>(dist_goal_x,<sp/>dist_goal_y))<sp/></highlight><highlight class="comment">#<sp/>Some<sp/>feedback<sp/>for<sp/>the<sp/>user</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;Time:<sp/>%2f&quot;</highlight><highlight class="normal"><sp/>%(time_finish<sp/>-<sp/>time_start))<sp/></highlight><highlight class="comment">#<sp/>Some<sp/>feedback<sp/>for<sp/>the<sp/>user</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>if<sp/>a<sp/>user<sp/>want<sp/>to<sp/>cancel<sp/>the<sp/>goal<sp/>during<sp/>movement<sp/>that<sp/>is<sp/>not<sp/>reachable</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>state<sp/>!=<sp/>1:<sp/></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>inp<sp/>=<sp/>input(</highlight><highlight class="stringliteral">&quot;The<sp/>robot<sp/>cannot<sp/>reach<sp/>to<sp/>the<sp/>goal,<sp/>do<sp/>you<sp/>want<sp/>to<sp/>cancel<sp/>the<sp/>goal?<sp/>if<sp/>yes,<sp/>press<sp/>[y]\n&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>inp<sp/>==<sp/></highlight><highlight class="stringliteral">&apos;y&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">pass</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>if<sp/>robot<sp/>achieved<sp/>the<sp/>goal</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>dis_goal<sp/>&lt;<sp/>1:<sp/></highlight><highlight class="comment">#<sp/>Successfully<sp/>reached</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;Robot<sp/>is<sp/>at<sp/>the<sp/>goal<sp/>position&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>move_base_msg_cancel<sp/>=<sp/>GoalID()</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>move_base_msg_cancel.id<sp/>=<sp/>id</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>publisher_cancel.publish(move_base_msg_cancel)</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>if<sp/>a<sp/>new<sp/>goal<sp/>is<sp/>needed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>inp<sp/>=<sp/>input(</highlight><highlight class="stringliteral">&quot;Do<sp/>you<sp/>want<sp/>to<sp/>provide<sp/>new<sp/>goal?<sp/>If<sp/>yes,<sp/>press<sp/>[y]:<sp/>\n&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>inp<sp/>==<sp/></highlight><highlight class="stringliteral">&apos;y&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exit_system<sp/>=<sp/></highlight><highlight class="keyword">True</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="src/option1.py"/>
+  </compounddef>
+</doxygen>

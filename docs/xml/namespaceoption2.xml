@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="namespaceoption2" kind="namespace" language="Python">
+    <compoundname>option2</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespaceoption2_1a06f3d33529fbf960024a52f043569b49" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>option2.publisher_velocity</definition>
+        <argsstring></argsstring>
+        <name>publisher_velocity</name>
+        <initializer>=  rospy.Publisher(&quot;cmd_vel&quot;, Twist, queue_size = 50)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/option2.py" line="23" column="1" bodyfile="src/option2.py" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespaceoption2_1a5faf7aaa8b733383beaeb8017745734d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def option2.welcome</definition>
+        <argsstring>()</argsstring>
+        <name>welcome</name>
+        <briefdescription>
+<para>welcoming words and instructions </para>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>This is the instruction list of keyboards for user
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/option2.py" line="26" column="1" bodyfile="src/option2.py" bodystart="26" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceoption2_1ab3563044d85aedce4d62c0d1b05d7801" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def option2.getch</definition>
+        <argsstring>()</argsstring>
+        <name>getch</name>
+        <briefdescription>
+<para>buttons for movement (forward, backward, right, left) and exit </para>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>This method getch() is used for avoiding pressing Enter 
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/option2.py" line="41" column="1" bodyfile="src/option2.py" bodystart="41" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceoption2_1afdcf5371cbfea7f8bf064633c31256d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def option2.control_buttons</definition>
+        <argsstring>()</argsstring>
+        <name>control_buttons</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>This method is used for controlling the buttons
+Control buttons: forward - backward, right - left, exit
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/option2.py" line="59" column="1" bodyfile="src/option2.py" bodystart="59" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceoption2_1a4991e08b87009670002565c79f2a6b28" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def option2.option_two</definition>
+        <argsstring>()</argsstring>
+        <name>option_two</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>This method is used for moving the robot based on the pressed inputs 
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/option2.py" line="87" column="1" bodyfile="src/option2.py" bodystart="87" bodyend="114"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>.. module::option2
+    :platform: Unix
+    :synopsis: Python module for the manual mode
+
+.. moduleauthor:: Bauyrzhan Zhakanov
+
+This mode allows to use the robot in manual mode. The robot can be controlled with keyboards.
+BY receiving the inputs, the robot moves forward/backward, right/left. </verbatim> </para>
+    </detaileddescription>
+    <location file="src/option2.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

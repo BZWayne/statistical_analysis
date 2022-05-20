@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.option2 &mdash; rt2_exercise 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> rt2_exercise
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">rt2_exercise</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>src.option2</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.option2</h1><div class="highlight"><pre>
+<span></span><span class="ch">#! /usr/bin/env python</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module::option2</span>
+<span class="sd">    :platform: Unix</span>
+<span class="sd">    :synopsis: Python module for the manual mode</span>
+
+<span class="sd">.. moduleauthor:: Bauyrzhan Zhakanov</span>
+
+<span class="sd">This mode allows to use the robot in manual mode. The robot can be controlled with keyboards.</span>
+<span class="sd">BY receiving the inputs, the robot moves forward/backward, right/left. </span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Twist</span>
+<span class="kn">import</span> <span class="nn">termios</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">tty</span>
+
+<span class="c1"># publisher of velocity</span>
+<span class="n">publisher_velocity</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s2">&quot;cmd_vel&quot;</span><span class="p">,</span> <span class="n">Twist</span><span class="p">,</span> <span class="n">queue_size</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span>
+
+<span class="c1">## welcoming words and instructions</span>
+<div class="viewcode-block" id="welcome"><a class="viewcode-back" href="../../index.html#src.option2.welcome">[docs]</a><span class="k">def</span> <span class="nf">welcome</span><span class="p">():</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is the instruction list of keyboards for user</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;clear&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Manual drive is activated&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Press [W] or [w]: to move forward&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Press [S] or [s]: to move backward&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Press [A] or [a]: to turn left&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Press [D] or [d]: to turn right&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Press [Q] or [q]: to exit from manual drive </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+<span class="c1">## buttons for movement (forward, backward, right, left) and exit</span>
+<div class="viewcode-block" id="getch"><a class="viewcode-back" href="../../index.html#src.option2.getch">[docs]</a><span class="k">def</span> <span class="nf">getch</span><span class="p">():</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This method getch() is used for avoiding pressing Enter </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_getch</span><span class="p">():</span>
+        <span class="n">fd</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">fileno</span><span class="p">()</span>
+        <span class="n">old_settings</span> <span class="o">=</span> <span class="n">termios</span><span class="o">.</span><span class="n">tcgetattr</span><span class="p">(</span><span class="n">fd</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">tty</span><span class="o">.</span><span class="n">setraw</span><span class="p">(</span><span class="n">fd</span><span class="p">)</span>
+            <span class="n">ch</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">termios</span><span class="o">.</span><span class="n">tcsetattr</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">termios</span><span class="o">.</span><span class="n">TCSADRAIN</span><span class="p">,</span> <span class="n">old_settings</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ch</span>
+    <span class="k">return</span> <span class="n">_getch</span><span class="p">()</span></div>
+
+<span class="c1"># Control buttons for robot</span>
+<div class="viewcode-block" id="control_buttons"><a class="viewcode-back" href="../../index.html#src.option2.control_buttons">[docs]</a><span class="k">def</span> <span class="nf">control_buttons</span><span class="p">():</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This method is used for controlling the buttons</span>
+<span class="sd">    Control buttons: forward - backward, right - left, exit</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">button</span> <span class="o">=</span> <span class="n">getch</span><span class="p">()</span>
+    <span class="n">velocity_x</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">angular_vel</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">exit_system</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1">## buttons for movement (forward, backward, right, left) and exit</span>
+    <span class="k">if</span> <span class="n">button</span> <span class="o">==</span> <span class="s1">&#39;w&#39;</span> <span class="ow">or</span> <span class="n">button</span> <span class="o">==</span> <span class="s1">&#39;W&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span>
+    <span class="k">elif</span> <span class="n">button</span> <span class="o">==</span> <span class="s1">&#39;a&#39;</span> <span class="ow">or</span> <span class="n">button</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">False</span>
+    <span class="k">elif</span> <span class="n">button</span> <span class="o">==</span> <span class="s1">&#39;d&#39;</span> <span class="ow">or</span> <span class="n">button</span> <span class="o">==</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="kc">False</span>
+    <span class="k">elif</span> <span class="n">button</span> <span class="o">==</span> <span class="s1">&#39;s&#39;</span> <span class="ow">or</span> <span class="n">button</span> <span class="o">==</span> <span class="s1">&#39;S&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span>
+    <span class="k">elif</span> <span class="n">button</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span> <span class="ow">or</span> <span class="n">button</span> <span class="o">==</span> <span class="s1">&#39;Q&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wrong button </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">velocity_x</span><span class="p">,</span> <span class="n">angular_vel</span><span class="p">,</span> <span class="n">exit_system</span></div>
+
+<span class="c1"># main for option_two</span>
+<div class="viewcode-block" id="option_two"><a class="viewcode-back" href="../../index.html#src.option2.option_two">[docs]</a><span class="k">def</span> <span class="nf">option_two</span><span class="p">():</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This method is used for moving the robot based on the pressed inputs </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">exit_system</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">msg_twist</span> <span class="o">=</span> <span class="n">Twist</span><span class="p">()</span>
+    <span class="n">msg_twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">msg_twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">msg_twist</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">msg_twist</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">welcome</span><span class="p">()</span>
+
+    <span class="c1">## loop</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">exit_system</span><span class="p">:</span>
+
+        <span class="c1">## start controlling the robot and publish</span>
+        <span class="p">[</span><span class="n">msg_twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">msg_twist</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="n">exit_system</span><span class="p">]</span> <span class="o">=</span> <span class="n">control_buttons</span><span class="p">()</span> 
+        <span class="n">publisher_velocity</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">msg_twist</span><span class="p">)</span> 
+
+        <span class="c1">## after some time stop and reset values for linear abd angular values</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+        <span class="n">msg_twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">msg_twist</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">publisher_velocity</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">msg_twist</span><span class="p">)</span> 
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[F&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[K&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">1</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Bauyrzhan Zhakanov.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

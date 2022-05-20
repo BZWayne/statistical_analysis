@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.17">
+  <compound refid="namespacemaster" kind="namespace"><name>master</name>
+    <member refid="namespacemaster_1a9b6b5a1862d2d8954f854b9b886b326b" kind="function"><name>welcome</name></member>
+    <member refid="namespacemaster_1a1835cdc0fc647a2c5b5ccf8b5e6e1778" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="namespaceoption1" kind="namespace"><name>option1</name>
+    <member refid="namespaceoption1_1a4288452a66899bc888e61a0d7e9b5258" kind="variable"><name>publisher_movebase</name></member>
+    <member refid="namespaceoption1_1a477ba124c9fd7e923d6db64bb6429fec" kind="variable"><name>publisher_cancel</name></member>
+    <member refid="namespaceoption1_1a033d304c8cfa4b221e4a92c81c412e4c" kind="function"><name>option_one</name></member>
+  </compound>
+  <compound refid="namespaceoption2" kind="namespace"><name>option2</name>
+    <member refid="namespaceoption2_1a06f3d33529fbf960024a52f043569b49" kind="variable"><name>publisher_velocity</name></member>
+    <member refid="namespaceoption2_1a5faf7aaa8b733383beaeb8017745734d" kind="function"><name>welcome</name></member>
+    <member refid="namespaceoption2_1ab3563044d85aedce4d62c0d1b05d7801" kind="function"><name>getch</name></member>
+    <member refid="namespaceoption2_1afdcf5371cbfea7f8bf064633c31256d8" kind="function"><name>control_buttons</name></member>
+    <member refid="namespaceoption2_1a4991e08b87009670002565c79f2a6b28" kind="function"><name>option_two</name></member>
+  </compound>
+  <compound refid="namespaceoption3" kind="namespace"><name>option3</name>
+    <member refid="namespaceoption3_1a79a35e8a6c1086c7dda1c22e0d39be46" kind="variable"><name>publisher_velocity</name></member>
+    <member refid="namespaceoption3_1a0f7b8f559f002859f44b779c5aee862c" kind="function"><name>welcome</name></member>
+    <member refid="namespaceoption3_1a105880e73deb67f490d832d526e54fa4" kind="function"><name>getch</name></member>
+    <member refid="namespaceoption3_1a83173bdd61c80a49375d369ed1f591fd" kind="function"><name>control_buttons</name></member>
+    <member refid="namespaceoption3_1aaad06fdf4d17fa46d5032faa17b96142" kind="function"><name>min_distance</name></member>
+    <member refid="namespaceoption3_1a94080abd1544cc07c702b255b7e4fb74" kind="function"><name>option_three</name></member>
+  </compound>
+  <compound refid="master_8py" kind="file"><name>master.py</name>
+  </compound>
+  <compound refid="option1_8py" kind="file"><name>option1.py</name>
+  </compound>
+  <compound refid="option2_8py" kind="file"><name>option2.py</name>
+  </compound>
+  <compound refid="option3_8py" kind="file"><name>option3.py</name>
+  </compound>
+  <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>src</name>
+  </compound>
+</doxygenindex>

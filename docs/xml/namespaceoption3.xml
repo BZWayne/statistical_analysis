@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="namespaceoption3" kind="namespace" language="Python">
+    <compoundname>option3</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespaceoption3_1a79a35e8a6c1086c7dda1c22e0d39be46" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>option3.publisher_velocity</definition>
+        <argsstring></argsstring>
+        <name>publisher_velocity</name>
+        <initializer>=  rospy.Publisher(&quot;cmd_vel&quot;, Twist, queue_size = 50)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/option3.py" line="27" column="1" bodyfile="src/option3.py" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespaceoption3_1a0f7b8f559f002859f44b779c5aee862c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def option3.welcome</definition>
+        <argsstring>()</argsstring>
+        <name>welcome</name>
+        <briefdescription>
+<para>welcoming words and instructions </para>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>This is the instruction list of keyboards for user
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/option3.py" line="30" column="1" bodyfile="src/option3.py" bodystart="30" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceoption3_1a105880e73deb67f490d832d526e54fa4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def option3.getch</definition>
+        <argsstring>()</argsstring>
+        <name>getch</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>This method getch() is used for avoiding pressing Enter 
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/option3.py" line="45" column="1" bodyfile="src/option3.py" bodystart="45" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceoption3_1a83173bdd61c80a49375d369ed1f591fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def option3.control_buttons</definition>
+        <argsstring>()</argsstring>
+        <name>control_buttons</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>This method is used for controlling the buttons
+Control buttons: forward - backward, right - left, exit
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/option3.py" line="63" column="1" bodyfile="src/option3.py" bodystart="63" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceoption3_1aaad06fdf4d17fa46d5032faa17b96142" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def option3.min_distance</definition>
+        <argsstring>(distance_wall)</argsstring>
+        <name>min_distance</name>
+        <param>
+          <type>distance_wall</type>
+          <defname>distance_wall</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>This method is used for calculating the distances to the wall
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/option3.py" line="91" column="1" bodyfile="src/option3.py" bodystart="91" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceoption3_1a94080abd1544cc07c702b255b7e4fb74" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def option3.option_three</definition>
+        <argsstring>()</argsstring>
+        <name>option_three</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>This method is used for moving robot by pressing the inputs
+/scan is used to detect the obstacles around the robot for its avoidance 
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/option3.py" line="118" column="1" bodyfile="src/option3.py" bodystart="118" bodyend="173"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>.. module::option3
+    :platform: Unix
+    :synopsis: Python module for the manual mode with assistance
+
+.. moduleauthor:: Bauyrzhan Zhakanov
+
+This mode allows to use the robot in manual mode. The robot can be controlled with keyboards.
+BY receiving the inputs, the robot moves forward/backward, right/left. However, this mode tells
+about the distance to the obtacles. Using the /scan to detect the walls around the robot.</verbatim> </para>
+    </detaileddescription>
+    <location file="src/option3.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

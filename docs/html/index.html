@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to rt2_exercise’s documentation! &mdash; rt2_exercise 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> rt2_exercise
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Welcome to rt2_exercise’s documentation!</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+<li><a class="reference internal" href="#master-module-master">Master Module <code class="xref py py-mod docutils literal notranslate"><span class="pre">master</span></code></a></li>
+<li><a class="reference internal" href="#module-src.option1">Autonomous Driving Module <code class="xref py py-mod docutils literal notranslate"><span class="pre">option1</span></code></a></li>
+<li><a class="reference internal" href="#module-src.option2">Manual Driving Module <code class="xref py py-mod docutils literal notranslate"><span class="pre">option2</span></code></a></li>
+<li><a class="reference internal" href="#module-src.option3">Manual Driving with Assistance Module <code class="xref py py-mod docutils literal notranslate"><span class="pre">option3</span></code></a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">rt2_exercise</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>Welcome to rt2_exercise’s documentation!</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="welcome-to-rt2-exercise-s-documentation">
+<h1>Welcome to rt2_exercise’s documentation!<a class="headerlink" href="#welcome-to-rt2-exercise-s-documentation" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="master-module-master">
+<h1>Master Module <code class="xref py py-mod docutils literal notranslate"><span class="pre">master</span></code><a class="headerlink" href="#master-module-master" title="Permalink to this headline"></a></h1>
+</div>
+<div class="section" id="module-src.option1">
+<span id="autonomous-driving-module-option1"></span><h1>Autonomous Driving Module <code class="xref py py-mod docutils literal notranslate"><span class="pre">option1</span></code><a class="headerlink" href="#module-src.option1" title="Permalink to this headline"></a></h1>
+<dl class="simple">
+<dt>Action client:</dt><dd><p>/move_base</p>
+</dd>
+</dl>
+<p>This module is called the autonomous driving mode that allows the robot to reach a specified position provided by user.
+Regarding on the input of the user, those inputs will be sent as a goal to the action server /move_base.
+During the movement, the robot sends feedback regarding status of the goal either reached or cancelled with publishers
+like /move_base/goal or /move_base/cancel respectively. The robot can create a map with help of gmapping. User is also able
+to cancel the goal, and provide a new one.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.option1.option_one">
+<span class="sig-prename descclassname"><span class="pre">src.option1.</span></span><span class="sig-name descname"><span class="pre">option_one</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/option1.html#option_one"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.option1.option_one" title="Permalink to this definition"></a></dt>
+<dd><p>This method is for the autonomous mode by communicating with
+the /move_base node via action server.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.option2">
+<span id="manual-driving-module-option2"></span><h1>Manual Driving Module <code class="xref py py-mod docutils literal notranslate"><span class="pre">option2</span></code><a class="headerlink" href="#module-src.option2" title="Permalink to this headline"></a></h1>
+<p>This mode allows to use the robot in manual mode. The robot can be controlled with keyboards.
+BY receiving the inputs, the robot moves forward/backward, right/left.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.option2.control_buttons">
+<span class="sig-prename descclassname"><span class="pre">src.option2.</span></span><span class="sig-name descname"><span class="pre">control_buttons</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/option2.html#control_buttons"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.option2.control_buttons" title="Permalink to this definition"></a></dt>
+<dd><p>This method is used for controlling the buttons
+Control buttons: forward - backward, right - left, exit</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.option2.getch">
+<span class="sig-prename descclassname"><span class="pre">src.option2.</span></span><span class="sig-name descname"><span class="pre">getch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/option2.html#getch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.option2.getch" title="Permalink to this definition"></a></dt>
+<dd><p>This method getch() is used for avoiding pressing Enter</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.option2.option_two">
+<span class="sig-prename descclassname"><span class="pre">src.option2.</span></span><span class="sig-name descname"><span class="pre">option_two</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/option2.html#option_two"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.option2.option_two" title="Permalink to this definition"></a></dt>
+<dd><p>This method is used for moving the robot based on the pressed inputs</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.option2.welcome">
+<span class="sig-prename descclassname"><span class="pre">src.option2.</span></span><span class="sig-name descname"><span class="pre">welcome</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/option2.html#welcome"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.option2.welcome" title="Permalink to this definition"></a></dt>
+<dd><p>This is the instruction list of keyboards for user</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.option3">
+<span id="manual-driving-with-assistance-module-option3"></span><h1>Manual Driving with Assistance Module <code class="xref py py-mod docutils literal notranslate"><span class="pre">option3</span></code><a class="headerlink" href="#module-src.option3" title="Permalink to this headline"></a></h1>
+<p>This mode allows to use the robot in manual mode. The robot can be controlled with keyboards.
+BY receiving the inputs, the robot moves forward/backward, right/left. However, this mode tells
+about the distance to the obtacles. Using the /scan to detect the walls around the robot.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.option3.control_buttons">
+<span class="sig-prename descclassname"><span class="pre">src.option3.</span></span><span class="sig-name descname"><span class="pre">control_buttons</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/option3.html#control_buttons"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.option3.control_buttons" title="Permalink to this definition"></a></dt>
+<dd><p>This method is used for controlling the buttons
+Control buttons: forward - backward, right - left, exit</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.option3.getch">
+<span class="sig-prename descclassname"><span class="pre">src.option3.</span></span><span class="sig-name descname"><span class="pre">getch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/option3.html#getch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.option3.getch" title="Permalink to this definition"></a></dt>
+<dd><p>This method getch() is used for avoiding pressing Enter</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.option3.min_distance">
+<span class="sig-prename descclassname"><span class="pre">src.option3.</span></span><span class="sig-name descname"><span class="pre">min_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance_wall</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/option3.html#min_distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.option3.min_distance" title="Permalink to this definition"></a></dt>
+<dd><p>This method is used for calculating the distances to the wall</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.option3.option_three">
+<span class="sig-prename descclassname"><span class="pre">src.option3.</span></span><span class="sig-name descname"><span class="pre">option_three</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/option3.html#option_three"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.option3.option_three" title="Permalink to this definition"></a></dt>
+<dd><p>This method is used for moving robot by pressing the inputs
+/scan is used to detect the obstacles around the robot for its avoidance</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.option3.welcome">
+<span class="sig-prename descclassname"><span class="pre">src.option3.</span></span><span class="sig-name descname"><span class="pre">welcome</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/option3.html#welcome"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.option3.welcome" title="Permalink to this definition"></a></dt>
+<dd><p>This is the instruction list of keyboards for user</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Bauyrzhan Zhakanov.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

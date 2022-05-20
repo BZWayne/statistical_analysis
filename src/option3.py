@@ -1,5 +1,18 @@
 #! /usr/bin/env python
 
+"""
+.. module::option3
+    :platform: Unix
+    :synopsis: Python module for the manual mode with assistance
+
+.. moduleauthor:: Bauyrzhan Zhakanov
+
+This mode allows to use the robot in manual mode. The robot can be controlled with keyboards.
+BY receiving the inputs, the robot moves forward/backward, right/left. However, this mode tells
+about the distance to the obtacles. Using the /scan to detect the walls around the robot.
+
+"""
+
 import rospy
 import time
 import os
@@ -15,6 +28,11 @@ publisher_velocity = rospy.Publisher("cmd_vel", Twist, queue_size = 50)
 
 ## welcoming words and instructions
 def welcome():
+
+    """
+    This is the instruction list of keyboards for user
+    """
+
     os.system('clear')
     print("Manual drive is activated")
     print("Press [W] or [w]: to move forward")
@@ -25,6 +43,11 @@ def welcome():
 
 # function for convenient usage enter inputs
 def getch():
+
+    """
+    This method getch() is used for avoiding pressing Enter 
+    """
+
     def _getch():
         fd = sys.stdin.fileno()
         old_settings = termios.tcgetattr(fd)
@@ -38,6 +61,12 @@ def getch():
 
 # Control buttons for robot
 def control_buttons():
+
+    """
+    This method is used for controlling the buttons
+    Control buttons: forward - backward, right - left, exit
+    """
+
     velocity_x = 0
     angular_vel = 0
     exit_system = False
@@ -60,6 +89,11 @@ def control_buttons():
 
 # for detecting the minimal distance until obstacle from all sides
 def min_distance(distance_wall):
+
+    """
+    This method is used for calculating the distances to the wall
+    """
+
     min_distance = 30
     angle_provided = 45
 
@@ -82,6 +116,12 @@ def min_distance(distance_wall):
 
 # main function for option three
 def option_three():
+
+    """
+    This method is used for moving robot by pressing the inputs
+    /scan is used to detect the obstacles around the robot for its avoidance 
+    """
+
     exit_system = 0
     distance_obst = 1 # Variable to set the minimal safe distance
     welcome()

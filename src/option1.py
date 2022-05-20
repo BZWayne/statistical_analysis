@@ -1,5 +1,23 @@
 #! /usr/bin/env python
 
+"""
+.. module::option1
+    :platform: Unix
+    :synopsis: Python module for autonomous mode.
+
+.. moduleauthor:: Bauyrzhan Zhakanov
+
+Action client:
+    /move_base
+
+This module is called the autonomous driving mode that allows the robot to reach a specified position provided by user.
+Regarding on the input of the user, those inputs will be sent as a goal to the action server /move_base. 
+During the movement, the robot sends feedback regarding status of the goal either reached or cancelled with publishers 
+like /move_base/goal or /move_base/cancel respectively. The robot can create a map with help of gmapping. User is also able
+to cancel the goal, and provide a new one. 
+
+"""
+
 import rospy
 import os
 from move_base_msgs.msg import MoveBaseActionFeedback
@@ -13,6 +31,12 @@ publisher_movebase = rospy.Publisher("move_base/goal", MoveBaseActionGoal, queue
 publisher_cancel = rospy.Publisher("move_base/cancel", GoalID, queue_size = 50)
 
 def option_one():
+
+    """This method is for the autonomous mode by communicating with 
+    the /move_base node via action server.
+
+    """
+
     # message topics using /move_base 
     move_base_msg = MoveBaseActionGoal()
     move_base_msg.goal.target_pose.header.frame_id = "map"

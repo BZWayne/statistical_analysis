@@ -9,4 +9,7 @@
     <rosparam file="$(find final_assignment)/param/base_local_planner_params.yaml" command="load"/>
     <rosparam file="$(find final_assignment)/param/move_base_params.yaml" command="load"/>
   </node>
+  
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
+  <node pkg="tf2_web_republisher" type="tf2_web_republisher" name="tf2_web_republisher" />
 </launch>

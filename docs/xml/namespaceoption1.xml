@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="namespaceoption1" kind="namespace" language="Python">
+    <compoundname>option1</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespaceoption1_1a4288452a66899bc888e61a0d7e9b5258" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>option1.publisher_movebase</definition>
+        <argsstring></argsstring>
+        <name>publisher_movebase</name>
+        <initializer>=  rospy.Publisher(&quot;move_base/goal&quot;, MoveBaseActionGoal, queue_size = 50)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/option1.py" line="30" column="1" bodyfile="src/option1.py" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceoption1_1a477ba124c9fd7e923d6db64bb6429fec" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>option1.publisher_cancel</definition>
+        <argsstring></argsstring>
+        <name>publisher_cancel</name>
+        <initializer>=  rospy.Publisher(&quot;move_base/cancel&quot;, GoalID, queue_size = 50)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/option1.py" line="31" column="1" bodyfile="src/option1.py" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespaceoption1_1a033d304c8cfa4b221e4a92c81c412e4c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def option1.option_one</definition>
+        <argsstring>()</argsstring>
+        <name>option_one</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>This method is for the autonomous mode by communicating with 
+the /move_base node via action server.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/option1.py" line="33" column="1" bodyfile="src/option1.py" bodystart="33" bodyend="121"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>.. module::option1
+:platform: Unix
+:synopsis: Python module for autonomous mode.
+
+.. moduleauthor:: Bauyrzhan Zhakanov
+
+Action client:
+/move_base
+
+This module is called the autonomous driving mode that allows the robot to reach a specified position provided by user.
+Regarding on the input of the user, those inputs will be sent as a goal to the action server /move_base. 
+During the movement, the robot sends feedback regarding status of the goal either reached or cancelled with publishers 
+like /move_base/goal or /move_base/cancel respectively. The robot can create a map with help of gmapping. User is also able
+to cancel the goal, and provide a new one. </verbatim> </para>
+    </detaileddescription>
+    <location file="src/option1.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>
