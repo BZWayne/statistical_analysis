@@ -63,7 +63,8 @@ def control_buttons():
     Control buttons: forward - backward, right - left, exit
     """
 
-    button = getch()
+    # button = getch()
+    button = input("Press: ")
     velocity_x = 0
     angular_vel = 0
     exit_system = False

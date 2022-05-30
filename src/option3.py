@@ -70,7 +70,8 @@ def control_buttons():
     velocity_x = 0
     angular_vel = 0
     exit_system = False
-    button = getch()
+    # button = getch()
+    button = input("Press: ")
 
     ## buttons for movement (forward, backward, right, left) and exit
     if button == 'w' or button == 'W':

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
 <launch>
-    <include file="$(find final_assignment)/launch/simulation_gmapping.launch"/>
-    <include file="$(find final_assignment)/launch/move_base.launch"/>
+    <include file="$(find rt2_exercises)/launch/simulation_gmapping.launch"/>
+    <include file="$(find rt2_exercises)/launch/move_base.launch"/>
 </launch>

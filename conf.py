@@ -20,7 +20,7 @@ subprocess.call('doxygen Doxyfile.in', shell=True)
 
 # -- Project information -----------------------------------------------------
 
-project = 'rt2_exercise'
+project = 'rt2_exercises'
 copyright = '2022, Bauyrzhan Zhakanov'
 author = 'Bauyrzhan Zhakanov'
 

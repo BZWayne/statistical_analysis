@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>final_assignment</name>
+  <name>rt2_exercises</name>
   <version>0.0.0</version>
-  <description>The final_assignment package</description>
+  <description>The rt2_exercises package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->

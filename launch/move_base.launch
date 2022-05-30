@@ -2,14 +2,11 @@
 
 <launch>
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-    <rosparam file="$(find final_assignment)/param/costmap_common_params.yaml" command="load" ns="global_costmap"/>
-    <rosparam file="$(find final_assignment)/param/costmap_common_params.yaml" command="load" ns="local_costmap"/>
-    <rosparam file="$(find final_assignment)/param/local_costmap_params.yaml" command="load"/>
-    <rosparam file="$(find final_assignment)/param/global_costmap_params.yaml" command="load"/>
-    <rosparam file="$(find final_assignment)/param/base_local_planner_params.yaml" command="load"/>
-    <rosparam file="$(find final_assignment)/param/move_base_params.yaml" command="load"/>
+    <rosparam file="$(find rt2_exercises)/param/costmap_common_params.yaml" command="load" ns="global_costmap"/>
+    <rosparam file="$(find rt2_exercises)/param/costmap_common_params.yaml" command="load" ns="local_costmap"/>
+    <rosparam file="$(find rt2_exercises)/param/local_costmap_params.yaml" command="load"/>
+    <rosparam file="$(find rt2_exercises)/param/global_costmap_params.yaml" command="load"/>
+    <rosparam file="$(find rt2_exercises)/param/base_local_planner_params.yaml" command="load"/>
+    <rosparam file="$(find rt2_exercises)/param/move_base_params.yaml" command="load"/>
   </node>
-  
-  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
-  <node pkg="tf2_web_republisher" type="tf2_web_republisher" name="tf2_web_republisher" />
 </launch>

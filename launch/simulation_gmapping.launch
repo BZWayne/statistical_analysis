@@ -12,7 +12,7 @@
   <arg name="debug" default="false"/>
   <arg name="physics" default="ode"/>
   <arg name="verbose" default="false"/>
-  <arg name="world_name" value="$(find final_assignment)/worlds/$(arg world).world"/>
+  <arg name="world_name" value="$(find rt2_exercises)/worlds/$(arg world).world"/>
   <arg name="respawn_gazebo" default="false"/>
   <arg name="use_clock_frequency" default="false"/>
   <arg name="pub_clock_frequency" default="100"/>
@@ -43,13 +43,13 @@
   </group>
 	
   <!-- Load the URDF into the ROS Parameter Server -->
-  <param name="robot_description" textfile="$(find final_assignment)/urdf/robot.urdf" />
+  <param name="robot_description" textfile="$(find rt2_exercises)/urdf/robot.urdf" />
 	 
   <!-- Start Rviz -->  
   <param name="use_gui" value="False"/>
    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node>
    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" /> 
-   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find final_assignment)/config/sim.rviz" />
+   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find rt2_exercises)/config/sim.rviz" />
 
   <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"

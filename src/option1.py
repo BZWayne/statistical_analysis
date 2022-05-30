@@ -50,8 +50,21 @@ def option_one():
         ## renew the system
         os.system('clear')
         print("Autonomous drive is chosen")
-        x_goal = float(input("Insert x coordinate: "))
-        y_goal = float(input("Insert y coordinate: "))
+
+        x_goal = None
+        while x_goal is None:
+            try:
+                x_goal = float(input("Insert x coordinate: "))
+            except Exception:
+                print('x_goal must be a (floating point) number')
+
+        y_goal = None
+        while y_goal is None:
+            try:
+                y_goal = float(input("Insert y coordinate: "))
+            except Exception:
+                print('y_goal must be a (floating point) number')
+
         print("The coordinates were given: x = %2.2f and y = %2.2f" % (x_goal, y_goal))
 
         ## provide and publish move_base with (x,y) values
@@ -89,9 +102,17 @@ def option_one():
             time_finish = rospy.Time.now().to_sec()
 
             ## print position and time
-            print("Now, robot is here at x = %2f and y = %2f" % (dist_goal_x, dist_goal_y)) # Some feedback for the user
-            print("Time: %2f" %(time_finish - time_start)) # Some feedback for the user
-        
+            # print("Now, robot is here at x = %2f and y = %2f" % (dist_goal_x, dist_goal_y)) # Some feedback for the user
+            # print("Time: %2f" %(time_finish - time_start)) # Some feedback for the user
+
+            inp = input("Do you want to cancel the goal? if yes, press [y]\n")
+            if inp == 'y':
+                ## to cancel the robot
+                move_base_msg_cancel = GoalID()
+                move_base_msg_cancel.id = id
+                publisher_cancel.publish(move_base_msg_cancel)
+                break
+                        
         # if a user want to cancel the goal during movement that is not reachable
         if state != 1: 
             inp = input("The robot cannot reach to the goal, do you want to cancel the goal? if yes, press [y]\n")
@@ -103,11 +124,6 @@ def option_one():
         # if robot achieved the goal
         if dis_goal < 1: # Successfully reached
             print("Robot is at the goal position")
-
-        ## to cancel the robot
-        move_base_msg_cancel = GoalID()
-        move_base_msg_cancel.id = id
-        publisher_cancel.publish(move_base_msg_cancel)
 
         # if a new goal is needed
         inp = input("Do you want to provide new goal? If yes, press [y]: \n")
