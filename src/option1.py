@@ -82,13 +82,13 @@ def option_one():
             rob_state = rospy.wait_for_message("move_base/status", GoalStatusArray)
         
         ## otherwise continue
-        id = rob_state.status_list[-1].goal_id.id # Retrieve the id of the goal
-        state = rob_state.status_list[-1].status # Retrieve the current status
+        id = rob_state.status_list[0].goal_id.id # Retrieve the id of the goal
+        state = rob_state.status_list[0].status # Retrieve the current status
 
         ## if the robot is close to the goal
         while dis_goal > 1:
             rob_state = rospy.wait_for_message("move_base/status", GoalStatusArray) 
-            rob_state = rob_state.status_list[-1].status
+            rob_state = rob_state.status_list[0].status
 
             ## if goal is not in charge exit from the system
             if (state != 1): 
@@ -105,17 +105,21 @@ def option_one():
             # print("Now, robot is here at x = %2f and y = %2f" % (dist_goal_x, dist_goal_y)) # Some feedback for the user
             # print("Time: %2f" %(time_finish - time_start)) # Some feedback for the user
 
-            inp = input("Do you want to cancel the goal? if yes, press [y]\n")
-            if inp == 'y':
-                ## to cancel the robot
-                move_base_msg_cancel = GoalID()
-                move_base_msg_cancel.id = id
-                publisher_cancel.publish(move_base_msg_cancel)
-                break
+            if dis_goal > 1:
+                inp = input("Do you want to cancel the goal? if yes, press [y] or press [n] for no:\n")
+                if inp == 'y':
+                    ## to cancel the robot
+                    move_base_msg_cancel = GoalID()
+                    move_base_msg_cancel.id = id
+                    publisher_cancel.publish(move_base_msg_cancel)
+                    break
+                elif inp == 'n':
+                    exit_system = True
+        
                         
         # if a user want to cancel the goal during movement that is not reachable
         if state != 1: 
-            inp = input("The robot cannot reach to the goal, do you want to cancel the goal? if yes, press [y]\n")
+            inp = input("The robot cannot reach to the goal, do you want to cancel the goal? if yes, press [y] or press [n] for no:\n")
             if inp == 'y':
                 pass
             else:
@@ -126,9 +130,11 @@ def option_one():
             print("Robot is at the goal position")
 
         # if a new goal is needed
-        inp = input("Do you want to provide new goal? If yes, press [y]: \n")
+        inp = input("Do you want to provide new goal? If yes, press [y] or press [n] for no: \n")
         if inp == 'y':
             continue
+        elif inp == 'n':
+            exit_system = True
         else:
             exit_system = True
         
