@@ -1,4 +1,4 @@
-Research Track 2 - Assignment
+Research Track II - Assignment
 ==================================
 
 This is the assignment of the course Research Track 2, Robotics Engineering, University of Genoa, Italy.
