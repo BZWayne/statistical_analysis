@@ -1,5 +1,5 @@
 # rt2_exercises
 
-Documentation: 
-Jupyter notebook:
-Statistical analysis:
+## Documentation: 
+## Jupyter notebook:
+## Statistical analysis:
