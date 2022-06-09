@@ -1,7 +1,7 @@
 Research Track 2 - Assignment
 ==================================
 
-This is the assignment of the course Research Track 2, provided by University of Genoa, Robotics Engineering.
+This is the assignment of the course Research Track 2, Robotics Engineering, University of Genoa, Italy.
 
 The assignment is divided into three parts, which are: 
 * Research Track 2 Documentation course was added using Sphinx for the Research Track 1.
