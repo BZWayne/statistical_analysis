@@ -21,14 +21,13 @@ Sphinx Documentation
 
 This is part of the Research Track 2 Documentation.
 
-* [Documentation] (https://github.com/BZWayne/rt2_exercises/tree/main/docs/html)
+* [Documentation](https://github.com/BZWayne/rt2_exercises/tree/main/docs/html)
 
 
 Jupyter Notebook
 -------------------
 
-This is part of the Research Track 2 [Jupyter] (https://github.com/BZWayne/rt2_exercises/blob/main/jupyter/final_assignment.ipynb)
-
+This is part of the Research Track 2 [Jupyter](https://github.com/BZWayne/rt2_exercises/blob/main/jupyter/final_assignment.ipynb)
 
 * To launch the Jupyter notebook node in terminal:
 ```bash
