@@ -19,7 +19,7 @@ Sphinx Documentation
 
 This is part of the Research Track 2 Documentation.
 
-* [Documentation](https://github.com/BZWayne/rt2_exercises/tree/main/docs/html)
+* [Documentation](file:///Users/bzwayne/Desktop/rt2_exercises/docs/html/index.html)
 
 
 Jupyter Notebook
@@ -27,9 +27,12 @@ Jupyter Notebook
 
 This is part of the Research Track 2 [Jupyter](https://github.com/BZWayne/rt2_exercises/blob/main/jupyter/final_assignment.ipynb)
 
-* To launch the Jupyter notebook node in terminal:
+* To launch the Jupyter notebook, type these in two terminals:
 ```bash
 $ jupyter notebook --allow-root --ip 0.0.0.0
+```
+```bash
+$ roslaunch rt2_exercises jupyter.launch
 ```
 
 Possible Improvements
