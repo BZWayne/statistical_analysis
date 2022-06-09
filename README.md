@@ -9,9 +9,7 @@ The assignment is divided into three parts, which are:
    * Try to reach different modalities
    * Plot the graphs for the laser scanner data, odometry data and reached / not-reached targets.
   
-* Perform a statistical analysis on the first assignment. 
-
-To compare two code for statistics: 
+* Perform a statistical analysis on the first assignment. To compare two code for statistics: 
    * [My code](https://github.com/BZWayne/rt_exercises/tree/main/robot_simulation_python)
    * [Professor's code](https://github.com/CarmineD8/python_simulator.git)
 
