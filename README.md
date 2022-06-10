@@ -17,7 +17,7 @@ The assignment is divided into three parts, which are:
 Sphinx Documentation
 -------------------
 
-This is part of the Research Track 2 Documentation.
+This is part of the Research Track 2 Documentation which is inside in folder *rt2_exercises/docs/html*
 
 * [Documentation](https://github.com/BZWayne/rt2_exercises/tree/main/docs/html/index.html)
 
