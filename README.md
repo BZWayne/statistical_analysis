@@ -19,7 +19,7 @@ Sphinx Documentation
 
 This is part of the Research Track 2 Documentation.
 
-* [Documentation](https://bzwayne.github.io/rt2_exercises/docs/html/index.html)
+* [Documentation]()
 
 
 Jupyter Notebook
