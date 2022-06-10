@@ -19,7 +19,7 @@ Sphinx Documentation
 
 This is part of the Research Track 2 Documentation.
 
-* [Documentation](file:///Users/bzwayne/Desktop/rt2_exercises/docs/html/index.html)
+* [Documentation](https://bzwayne.github.io/rt2_exercises/docs/html/index.html)
 
 
 Jupyter Notebook
@@ -35,7 +35,7 @@ $ jupyter notebook --allow-root --ip 0.0.0.0
 $ roslaunch rt2_exercises jupyter.launch
 ```
 
-Possible Improvements
+Improvements
 ------------------
 
 There are three main improvements that I came up with, which are:
