@@ -4,12 +4,12 @@ Research Track II - Assignment
 This is the assignment of the course Research Track 2, Robotics Engineering, University of Genoa, Italy.
 
 The assignment is divided into three parts, which are: 
-* Research Track 2 Documentation course was added using Sphinx for the Research Track 1.
-* Created a Jupyter notebook to interact with the simulation on the third assignment able to:
-   * Try to reach different modalities
-   * Plot the graphs for the laser scanner data, odometry data and reached / not-reached targets.
+1) Research Track II Documentation was added using Sphinx from the Research Track I task.
+2) Jupyter notebook was added to interact with the simulation on the third assignment:
+   * To experiment some modalities
+   * To plot the graphs for the laser scanner data, odometry data and reached / not-reached targets.
   
-* Perform a statistical analysis on the first assignment. To compare two code for statistics: 
+3) Perform a statistical analysis on the first assignment. To compare two code for statistics: 
    * [My code](https://github.com/BZWayne/rt_exercises/tree/main/robot_simulation_python)
    * [Professor's code](https://github.com/CarmineD8/python_simulator.git)
 
