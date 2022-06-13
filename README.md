@@ -13,7 +13,7 @@ The assignment is divided into four parts, which are:
    * [My code](https://github.com/BZWayne/rt_exercises/tree/main/robot_simulation_python)
    * [Professor's code](https://github.com/CarmineD8/python_simulator.git)
    
-4) [Report](https://github.com/BZWayne/rt2_exercises/blob/main/RT2_report.pdf) 
+4) [Report of research theme](https://github.com/BZWayne/rt2_exercises/blob/main/RT2_report.pdf) 
 
 
 Sphinx Documentation
