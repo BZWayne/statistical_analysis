@@ -1,5 +1,6 @@
 Research Track II - Assignment
 ==================================
+**Author**: *Bauyrzhan Zhakanov*, [bauyrzhan.zhakanov@gmail.com](bauyrzhan.zhakanov@gmail.com)
 
 This is the assignment of the course Research Track 2, Robotics Engineering, University of Genoa, Italy.
 
